@@ -11,4 +11,4 @@ This cart screen is built using React Native. In which I have used different com
 * Displays type of prodcuts in a listview
 
 ## Screen
-![alt tag](https://github.com/byteridge/GarageInternship2020/blob/master/screen.png)
+![alt tag](https://github.com/byteridge/GarageInternship2020/blob/master/ReactNativeExample/screen.png)
