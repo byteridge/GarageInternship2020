@@ -1,0 +1,17 @@
+val containerName = "covid19"
+val storageAccountName = "garageintern"
+val sas = "?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-12-11T20:39:11Z&st=2020-05-16T12:39:11Z&spr=https,http&sig=tFOBVxxWw8o0Emadi0LFA699Gncs04AwBQJ6lzx3tsw%3D"
+
+val url = "wasbs://" + containerName + "@" + storageAccountName + ".blob.core.windows.net/"
+var config = "fs.azure.sas." + containerName + "." + storageAccountName + ".blob.core.windows.net"
+
+dbutils.fs.mount(
+  source = url,
+  mountPoint = "/mnt/demo",
+  extraConfigs = Map(config -> sas))
+  
+
+val df = spark.read.csv("/mnt/demo/covid_19_india.csv")
+val header = df.first 
+val rows = df.filter(line => line != header)
+display(rows)
